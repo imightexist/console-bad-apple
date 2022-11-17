@@ -27,7 +27,7 @@ function badapple() {
     canvas.width = width
     canvas.height = height
     function draw() {
-        if (!video.ended) {
+        if (!video.ended || !video.paused) {
             //console.clear()
             canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
             for (let y = 0; y < height; y++) {
