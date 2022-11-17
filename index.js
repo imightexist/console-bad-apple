@@ -1,8 +1,8 @@
 function badapple() {
     // html stuff
-    width = 86
-    height = 63
-    fps = 30;
+    width = 56
+    height = 42
+    fps = 10;
     video = document.getElementById('video')
     canvas = document.getElementById('video2')
     context = canvas.getContext('2d');
@@ -28,20 +28,22 @@ function badapple() {
     canvas.height = height
     function draw() {
         if (!video.ended) {
+            //console.clear()
             canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
-            for (let y = 0; y < canvas.height; y++) {
+            for (let y = 0; y < height; y++) {
                 let line = ""
-                for (let x = 0; x < canvas.width; x++) {
+                for (let x = 0; x < width; x++) {
                     pixel = context.getImageData(x, y, 1, 1).data;
                     hex = "#" + ("000000" + rgbToHex(pixel[0], pixel[1], pixel[2])).slice(-6);
-                    if (hex == "#FFFFFF"){
-                        line += "#"
-                    }else{
+                    if (hex.startsWith("#f")){
                         line += " "
+                    }else{
+                        line += "#"
                     }
                 }
                 console.log(line)
             }
+            
         }
     }
     setInterval(draw, 1000 / fps)
